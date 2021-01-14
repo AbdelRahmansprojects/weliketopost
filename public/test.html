@@ -1,0 +1,36 @@
+<html>
+    
+    <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
+
+    <form action = 'home.html' id = 'test2'>
+
+        <div id = "username">
+           
+            <p>  Username : <input type = text id = "handle" name="username" required/> </p>
+            <hr>
+      
+            <button id = "submit">
+                Submit Username
+            </button>
+
+        </div>
+
+<script>
+    let thename = true
+    let submit = document.getElementById('submit')
+    let username = document.getElementById('username')
+    submit.addEventListener('click',()=>{
+        thename = false
+    })
+
+    
+
+</script>
+
+</form>
+
+    <link href = "/styles.css" rel = "stylesheet"/>
+    <script src = "/socket.io/socket.io.js"></script>
+    <script src = "/chat.js"></script>
+
+</html>
