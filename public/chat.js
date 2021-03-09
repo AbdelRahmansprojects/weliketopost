@@ -28,13 +28,13 @@ let name = url.searchParams.get('username')
 
     } 
 
-        socket.on('userdisconnected',function outputdisconnect(data){
+        socket.once('userdisconnected',function outputdisconnect(data){
             
             let div = document.createElement('div')
             div.classList.add('output')
             div.innerHTML = '<p>' + data.username+ ' has left the chat</p>'
             chatwindow.appendChild(div)
-            
+            console.log(data.username)
         })
     
         
@@ -99,6 +99,7 @@ if(socket !== undefined){
         }
         
         outputmessage(message)
+        
         chatwindow.scrollTop = chatwindow.scrollHeight
     })
 }
@@ -111,14 +112,25 @@ function outputusers(users) {
   }
 
   function outputmessage(message){
+    let messageslength = message.length -1
     
     if(message.length){
         for(var x = 0;x < message.length;x++){
-            console.log(message[x].message)
+            console.log(message[x].username)
             let div = document.createElement('div')
-            div.classList.add('output')
-            div.innerHTML = `<p><strong>` + message[x].name+` : </strong>` + message[x].msg + `</p>`
-            chatwindow.appendChild(div)
+                div.classList.add('output')
+            
+            if(message[x].name !== undefined){
+                
+                div.innerHTML = `<p><strong>` + message[x].name+` : </strong>` + message[x].msg + `</p>`
+                chatwindow.appendChild(div)
+            } else {
+                
+                div.innerHTML = '<p>' + message[x].leftuser+ ' has left the chat</p>'
+                chatwindow.appendChild(div)
+                //console.log(data.username)
+            }
+            
             //chatwindow.insertBefore(div, chatwindow.firstChild)
         }
     }

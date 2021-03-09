@@ -2,7 +2,7 @@ const express = require('express');
 const socket = require('socket.io')
 const path = require('path')
 const app = express();
-const server = app.listen(process.env.USER || 3000, ()=> console.log("listening port 3000"))
+const server = app.listen(3000, ()=> console.log("listening port 3000"))
 const io = socket(server)
 const fs = require('fs')
 const {userjoin,getcurrentuser, userleave,users} = require('./user');
@@ -11,7 +11,7 @@ const { globalEval } = require('jquery');
 
 const mongo = require('mongodb').MongoClient;
 
-mongo.connect('mongodb://localhost:27017', {useUnifiedTopology: true}, (err, client)=>{
+mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retryWrites=true&w=majority', {useUnifiedTopology: true}, (err, client)=>{
     
     if(err){
         throw err
@@ -27,6 +27,7 @@ mongo.connect('mongodb://localhost:27017', {useUnifiedTopology: true}, (err, cli
         //post_collection.remove()
             post_collection.find().limit(100).sort({_id:1}).toArray(function(err,res){    
                 socket.emit('chat', res);
+                
             })  
 
             connections.push(socket)
