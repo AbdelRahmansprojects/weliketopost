@@ -58,14 +58,14 @@
     margin: 270px auto;
     border: 1px solid black;
     text-align: center;
-    background-color:#BDBDBD;
+    background-color:#d1dfd7;
     
     
 }
 
 #submit {
     width: 100%;
-    background-color: #C9F7F8;
+    background-color: green;
     height:50px;
     font-family: 'Nunito';
 }
