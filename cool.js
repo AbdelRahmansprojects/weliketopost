@@ -2,7 +2,7 @@ const express = require('express');
 const socket = require('socket.io')
 const path = require('path')
 const app = express();
-const server = app.listen((process.env.PORT, ()=> console.log("listening port 3000")))
+const server = app.listen((process.env.PORT || 3000, ()=> console.log("listening port 3000")))
 const io = socket(server)
 const fs = require('fs')
 const {userjoin,getcurrentuser, userleave,users} = require('./user');
