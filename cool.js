@@ -3,12 +3,14 @@ const socket = require('socket.io')
 const path = require('path')
 const app = express();
 
-const server = app.listen((3000, ()=> console.log("listening port 3000")))
+//const server = app.listen((process.env.PORT || 3000, ()=> console.log("listening port 3000")))
+var server = require('http').createServer(app);
 const io = socket(server)
 const fs = require('fs')
 const {userjoin,getcurrentuser, userleave,users} = require('./user');
 const e = require('express');
 const { globalEval } = require('jquery');
+server.listen(process.env.PORT || 3000);
 
 const mongo = require('mongodb').MongoClient;
 
@@ -21,7 +23,7 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
     console.log('MongoDB connected.....')
 
     io.on("connect", function(socket){
-
+        
         const db = client.db('test')
         let post_collection = db.collection('posts') 
         
