@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     
-    "start": "node cool.js"
+    "start": "nodemon --exec babe-node cool.js"
     
   },
   "keywords": [],
