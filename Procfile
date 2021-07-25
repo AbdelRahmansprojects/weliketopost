@@ -1,1 +1,1 @@
-web: node cool.js
+web:node cool.js
