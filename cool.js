@@ -111,5 +111,3 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(resolve(process.cwd(), 'client/build/cool.js'))
     })
   }
-
-  
