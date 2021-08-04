@@ -105,7 +105,7 @@ function formatmessage(name,msg){
     }
 }
 
-//app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 
 if (process.env.NODE_ENV === 'production') {
     
