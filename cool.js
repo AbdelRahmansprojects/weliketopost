@@ -105,11 +105,9 @@ function formatmessage(name,msg){
     }
 }
 
-if(process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'public')));
-  
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(resolve(process.cwd(), 'client/build')))
     app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'public','cool.js'))
-    });
-    
-  }
+    res.sendFile(resolve(process.cwd(), 'client/build/app.js'))
+        })
+      }
