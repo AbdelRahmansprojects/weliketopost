@@ -4,7 +4,7 @@
   "engines": {
     "node": "12.x"
   },
-  "main": "chat.js",
+  "main": "cool.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "npm install --prefix client && npm run build --prefix client",
