@@ -103,3 +103,10 @@ function formatmessage(name,msg){
         msg
     }
 }
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(promise.resolve(process.cwd(), 'client/build')))
+    app.get('*', (req, res) => {
+      res.sendFile(promise.resolve(process.cwd(), 'client/build/cool.js'))
+    })
+  }
