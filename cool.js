@@ -14,7 +14,7 @@ server.listen(process.env.PORT || 3000);
 
 const mongo = require('mongodb').MongoClient;
 
-mongo.connect(process.env.MONGODB_URL || 'mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retryWrites=true&w=majority', {useUnifiedTopology: true}, (err, client)=>{
+mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retryWrites=true&w=majority', {useUnifiedTopology: true}, (err, client)=>{
     
     if(err){
         throw err
@@ -94,8 +94,9 @@ mongo.connect(process.env.MONGODB_URL || 'mongodb+srv://abdu:abdu4532@cluster0.z
 let disconnectss = false
 
 connections = []
-                
+    
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 function formatmessage(name,msg){
     return {
@@ -104,11 +105,4 @@ function formatmessage(name,msg){
     }
 }
 
-if(process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'front_end', 'build')));
-  
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'front_end', 'build', 'home.html'))
-    });
-    
-  }
+
