@@ -106,8 +106,8 @@ function formatmessage(name,msg){
 app.use(express.static(path.join(__dirname, 'public')))
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(resolve(process.cwd(), 'client/build')))
+    
     app.get('*', (req, res) => {
-      res.sendFile(resolve(process.cwd(), 'cool.js'))
+      res.sendFile(path.resolve(process.cwd(), 'cool.js'))
     })
   }
