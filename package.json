@@ -4,11 +4,11 @@
   "engines": {
     "node": "12.x"
   },
-  "main": "cool.js",
+  "main": "chat.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     
-    "start": "nodemon cool.js"
+    "start": "node cool.js"
     
   },
   "keywords": [],
