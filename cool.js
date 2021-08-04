@@ -1,4 +1,4 @@
-// first things first: dudu is stupid
+// THE NUCLEAR LAUNCH CODES ARE :NSIUFIHJIFOSDIOFHDUIFHUS
 
 const express = require('express');
 const socket = require('socket.io')
