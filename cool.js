@@ -108,6 +108,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 if (process.env.NODE_ENV === 'production') {
     
     app.get('*', (req, res) => {
-      res.sendFile(resolve(process.cwd(), 'cool.js'))
+      res.sendFile(path.resolve(process.cwd(), 'cool.js'))
     })
   }
