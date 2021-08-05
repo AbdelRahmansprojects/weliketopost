@@ -24,7 +24,7 @@ let name = url.searchParams.get('username')
 
     if(location.href.split(name)!="http://localhost:3000/home.html?username=,"){
         
-        location.replace("https://geekprank.com/hacker/?fbclid=IwAR2pgfR_q75CIHCbfqrsrhuHSgE2APsg3lrA6uYN8fbCrbIG8F4gqCI3cvs")
+        //location.replace("https://geekprank.com/hacker/?fbclid=IwAR2pgfR_q75CIHCbfqrsrhuHSgE2APsg3lrA6uYN8fbCrbIG8F4gqCI3cvs")
 
     } 
 
