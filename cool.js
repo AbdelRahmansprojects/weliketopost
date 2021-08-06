@@ -16,7 +16,7 @@ server.listen(process.env.PORT || 3000);
 
 const mongo = require('mongodb').MongoClient;
 
-mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retryWrites=true&w=majority', {useUnifiedTopology: true}, (err, client)=>{
+mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retryWrites=true&w=majority' || process.env.MONGO_URL, {useUnifiedTopology: true}, (err, client)=>{
     
     if(err){
         throw err
