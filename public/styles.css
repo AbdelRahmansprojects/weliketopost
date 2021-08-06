@@ -58,16 +58,16 @@
     margin: 270px auto;
     border: 1px solid black;
     text-align: center;
-    background-color:#d1dfd7;
+    background-color:white;
     
     
 }
 
 #submit {
     width: 100%;
-    background-color: green;
+    background-color: grey;
     height:50px;
-    font-family: 'Nunito';
+    font-family: monospace;
 }
 
 #submit:hover{
@@ -75,13 +75,13 @@
 }
 
 p{
-    font-family: 'Nunito';
+    font-family: monospace;
     
     
 }
 
 #handle{
-    font-family: 'Nunito';
+    font-family: monospace;
     margin:20px auto;
     width:50%;
     font-size: 20px;
@@ -129,7 +129,7 @@ h2{
 .rainbow {
     text-align: center;
     text-decoration: underline;
-    font-size: 32px;
+    font-size: 100px;
     font-family: monospace;
     letter-spacing: 5px;
 }
