@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost:3000')
+var socket = io.connect()
 let btn = document.getElementById('button')
 let message = document.getElementById('message')
 let output = document.querySelector('.output')

@@ -1,5 +1,3 @@
-// hello world
-
 const express = require('express');
 const socket = require('socket.io')
 const path = require('path')
@@ -16,13 +14,14 @@ server.listen(process.env.PORT || 3000);
 
 const mongo = require('mongodb').MongoClient;
 
-mongo.connect(process.env.MONGO_URL, {useUnifiedTopology: true}, (err, client)=>{
+mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retryWrites=true&w=majority' || process.env.MONGO_URL, {useUnifiedTopology: true}, (err, client)=>{
     
     if(err){
         throw err
     }
     
     console.log('MongoDB connected.....')
+
 
     io.on("connect", function(socket){
         
