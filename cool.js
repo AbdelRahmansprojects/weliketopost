@@ -7,9 +7,10 @@ const app = express();
 var server = require('http').createServer(app);
 const io = socket(server)
 const fs = require('fs')
-const {userjoin,getcurrentuser, userleave,users} = require('./user');
+const {userjoin,getcurrentuser, userleave,users} = require('./public/user');
 const e = require('express');
 const { globalEval } = require('jquery');
+let testusers = []
 server.listen(process.env.PORT || 3000);
 
 const mongo = require('mongodb').MongoClient;
@@ -56,6 +57,8 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
                         
             })
 
+            io.emit('diffusers', users)
+
             socket.on('disconnect', ()=> {
                 
                 const user= userleave(socket.id);
@@ -68,27 +71,33 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
                 console.log("Disconnected: " + connections.length + " sockets connected (NOW)")
 
                     disconnectss = false
-                    setTimeout(() => {
 
-                        if(disconnectss == false){
+                    //  *********** HERE UNCOMMENT IF U WANT TO IMPLEMENT "LEFT FUNCTION"
+
+                    // setTimeout(() => {
+
+                    //     if(disconnectss == false){
                             
-                            console.log("33333333333333333333")
-                            post_collection.insertOne({leftuser:user.username}, () => {
-                                 io.emit('userdisconnected',user)
-                             })
-                        }
+                    //         console.log("33333333333333333333")
+                    //         post_collection.insertOne({leftuser:user.username}, () => {
+                    //              io.emit('userdisconnected',user)
+                    //          })
+                    //     }
 
-                    }, 2000);
+                    // }, 2000);
                 
             })
 
             socket.on("user_joined", (data)=>{
+                io.emit("testing", users)
+                
                 const user = userjoin(socket.id,data)
+
+                //console.log(users)
                 //io.emit('userjoinedmessage', user)
             })
 
             disconnectss = true
-            
         })
 })
 
@@ -112,3 +121,9 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.resolve(process.cwd(), 'public/test.html'))
     })
   }
+
+  //WHAT I WANT TO DO: 
+  // 1) Add cookies so i can make join function and other stuff but iu can do it later
+  // 2) When send /10110010 in message i have functions that i can do like make the entire text red 
+  //   - **How to make it specific to only me 
+  //   - How to make it 

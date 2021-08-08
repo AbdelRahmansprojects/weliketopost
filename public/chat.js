@@ -9,7 +9,7 @@ let chatwindow = document.getElementById('chatwindow')
 let userlist = document.getElementById('users')
 let numberoftimes = 0
 let important = false
-
+let allusers = []
 
 let sendtrue = false
 let test = document.getElementById('test')
@@ -29,12 +29,13 @@ let name = url.searchParams.get('username')
     } 
 
         socket.once('userdisconnected',function outputdisconnect(data){
+            //  *********** HERE UNCOMMENT IF U WANT TO IMPLEMENT "LEFT FUNCTION"
             
-            let div = document.createElement('div')
-            div.classList.add('output')
-            div.innerHTML = '<p>' + data.username+ ' has left the chat</p>'
-            chatwindow.appendChild(div)
-            console.log(data.username)
+            // let div = document.createElement('div')
+            // div.classList.add('output')
+            // div.innerHTML = '<p>' + data.username+ ' has left the chat</p>'
+            // chatwindow.appendChild(div)
+            // console.log(data.username)
         })
     
         
@@ -43,8 +44,7 @@ let name = url.searchParams.get('username')
     socket.emit('usercounter', name)
     
     
-       
-    //alert(mycookie)
+    
 
     socket.once('userjoinedmessage',(user)=>{
         //alert(mycookie)
@@ -54,7 +54,7 @@ let name = url.searchParams.get('username')
             div.classList.add('output')
             div.innerHTML = '<p>' + user.username+ ' has joined the chat</p>'
             chatwindow.appendChild(div)
-            Cookies.set('ieat',true)
+            //Cookies.set('ieat',true)
         
         
     })
@@ -105,9 +105,10 @@ if(socket !== undefined){
 }
 
 function outputusers(users) {
+    
     userlist.innerHTML = `
       ${users.map(user => `<li>${user.username}</li>`).join('')}`;
-      
+    
     
   }
 
@@ -121,13 +122,13 @@ function outputusers(users) {
                 div.classList.add('output')
             
             if(message[x].name !== undefined){
-                
+
                 div.innerHTML = `<p><strong>` + message[x].name+` : </strong>` + message[x].msg + `</p>`
                 chatwindow.appendChild(div)
-            } else {
+            } else if(message[x].leftuser){
                 
-                div.innerHTML = '<p>' + message[x].leftuser+ ' has left the chat</p>'
-                chatwindow.appendChild(div)
+                // div.innerHTML = '<p>' + message[x].leftuser+ ' has left the chat</p>'
+                // chatwindow.appendChild(div)
                 //console.log(data.username)
             }
             
@@ -138,3 +139,12 @@ function outputusers(users) {
   }
 
   
+socket.on("testing", function(users){
+    for(var x = 0; x<users.length;x++){
+        
+        if(name == users[x].username && socket.id != users[x].id){
+            window.location.replace("weliketopost.herokuapp.com")
+                        
+        }
+    }
+})
