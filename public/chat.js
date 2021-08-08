@@ -143,8 +143,8 @@ socket.on("testing", function(users){
     for(var x = 0; x<users.length;x++){
         
         if(name == users[x].username && socket.id != users[x].id){
-            window.location.replace("weliketopost.herokuapp.com")
-                        
+            window.location.replace("http://localhost:3000/test.html")
+            socket.disconnect()           
         }
     }
 })
