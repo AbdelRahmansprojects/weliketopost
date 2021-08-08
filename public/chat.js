@@ -145,7 +145,7 @@ socket.on("testing", function(users){
         if(name == users[x].username && socket.id != users[x].id){
             socket.disconnect() 
             //if this didnt happen then we can call "userjoin()"
-            window.location.replace("http://localhost:3000/test.html")
+            window.location.replace("weliketopost.herokuapp.com")
             // socket.on("confirmation", (data)=>{
             //     data = true
             //     io.emit("confirmation",data)
