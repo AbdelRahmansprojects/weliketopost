@@ -145,7 +145,7 @@ socket.on("testing", function(users){
         if(name == users[x].username && socket.id != users[x].id){
             window.location.replace("weliketopost.herokuapp.com")
             
-            alert("Cant choose this name cuz its already taken")
+            
             socket.disconnect()           
         }
     }
