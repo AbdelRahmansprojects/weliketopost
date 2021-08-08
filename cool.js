@@ -2,7 +2,7 @@ const express = require('express');
 const socket = require('socket.io')
 const path = require('path')
 const app = express();
-
+let testing = false;
 //const server = app.listen((process.env.PORT || 3000, ()=> console.log("listening port 3000")))
 var server = require('http').createServer(app);
 const io = socket(server)
@@ -91,6 +91,11 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
             socket.on("user_joined", (data)=>{
                 io.emit("testing", users)
                 
+                // want this to only happen if the testing above turns out to be false
+                // io.emit("confirmation",testing)
+                // socket.on("confirmation",(data)=>{
+                //     console.log(data)
+                // })
                 const user = userjoin(socket.id,data)
 
                 //console.log(users)
