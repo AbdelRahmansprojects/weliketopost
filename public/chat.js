@@ -10,6 +10,7 @@ let userlist = document.getElementById('users')
 let numberoftimes = 0
 let important = false
 let allusers = []
+let tester = false
 
 let sendtrue = false
 let test = document.getElementById('test')
@@ -61,13 +62,7 @@ let name = url.searchParams.get('username')
 
     
     
-    socket.on('usercounter',(data)=>{
-
-            //console.log(data.users)
-            
-            outputusers(data.users)
-
-    })
+    
 
 test.addEventListener('submit', e=>{
     e.preventDefault();
@@ -83,47 +78,62 @@ test.addEventListener('submit', e=>{
 
     // Get message text
     const msg = e.target.elements.message.value
-    
-    socket.emit('chat',{
-        msg,name
-    })
+    let socketsid=socket.id;
+    if(msg == "JARVISMODE"){
+        
+        
+    } else {
+        socket.emit('chat',{
+
+            socketsid,msg,name
+        })
+    }
 
     message.value = ""
 
 })
 if(socket !== undefined){
     socket.on('chat', function(message){ 
-        console.log(message)
-        if(message.length){
-           
-        }
-        
+        //alert(message[message.length-1].msg)
         outputmessage(message)
         
         chatwindow.scrollTop = chatwindow.scrollHeight
     })
 }
 
+socket.on('usercounter',(data)=>{
+
+    //alert(data.users)
+    outputusers(data.users)
+
+})
+
 function outputusers(users) {
-    
+
     userlist.innerHTML = `
       ${users.map(user => `<li>${user.username}</li>`).join('')}`;
-    
-    
+
   }
 
   function outputmessage(message){
+    //alert(message[message.length-1].name)
     let messageslength = message.length -1
     
+    //console.log(socket.id)
+    //console.log(message[0].socketsid)
     if(message.length){
         for(var x = 0;x < message.length;x++){
-            console.log(message[x].username)
+            
             let div = document.createElement('div')
                 div.classList.add('output')
-            
-            if(message[x].name !== undefined){
+            if(message[0].socketsid == socket.id){
+                div.innerHTML = `<p style = "text-align:right; font-size:25px;"><strong>` + message[x].name+` : </strong>` + message[x].msg + `</p>`
+                chatwindow.appendChild(div)
 
-                div.innerHTML = `<p><strong>` + message[x].name+` : </strong>` + message[x].msg + `</p>`
+            } else 
+             if(message[x].name !== undefined){
+
+                div.innerHTML = `<p style = " font-size:25px"><strong>` + message[x].name+` : </strong>` + message[x].msg + `</p>`
                 chatwindow.appendChild(div)
             } else if(message[x].leftuser){
                 
@@ -138,20 +148,23 @@ function outputusers(users) {
     
   }
 
-  
-socket.on("testing", function(users){
-    for(var x = 0; x<users.length;x++){
+
+// socket.on("testing", function(users){
+//     for(var x = 0; x<users.length;x++){
         
-        if(name == users[x].username && socket.id != users[x].id){
-            socket.disconnect() 
-            //if this didnt happen then we can call "userjoin()"
-            window.location.replace("weliketopost.herokuapp.com")
-            // socket.on("confirmation", (data)=>{
-            //     data = true
-            //     io.emit("confirmation",data)
-            // })
-            
-            socket.disconnect()        
-        }
-    }
-})
+//         if(name == users[x].username && socket.id != users[x].id){
+//             socket.disconnect() 
+//             //if this didnt happen then we can call "userjoin()"
+//             window.location.replace("http://localhost:3000/test.html")
+//             // socket.on("confirmation", (data)=>{
+//             //     data = true
+//             //     io.emit("confirmation",data)
+//             // })
+//             socket.disconnect()           
+//         } 
+//     }
+    
+// })
+
+// my messages to show in the right but other user messages show in the left
+// cant find persons id right after he sends message
