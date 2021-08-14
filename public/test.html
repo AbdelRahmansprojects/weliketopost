@@ -29,22 +29,27 @@
         </div>
 
         <script>
-    
+            
+            let cookies = document.cookie.split(';').map(cookie => cookie.split('=')).reduce((accumulator, [key, value]) => ({
+                ...accumulator,[key.trim()]:decodeURIComponent(value)
+            }), {});
             let thename = true
             let submit = document.getElementById('submit')
             let username = document.getElementById('username')
             let alltest = []
             
-            
+            if(cookies.username !=undefined){
+                location.replace("weliketopost.herokuapp.com/home.html?")
+            }
             function getvalue(){
                 let handlee = document.getElementById('handle').value
-                
-                document.cookie = "tester = " + alltest
+               
                 document.cookie = "username =" + handlee
             }
             
+            
         </script>
-        
+
 
 </form>
 

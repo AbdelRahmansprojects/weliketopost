@@ -1,14 +1,16 @@
-/* #mainchat {
+#mainchat {
 
     
+    position:relative;
+    height:100%;
+    width:100%;
     
-    
-} */
+}
 
 /*entire chat*/
 #realmainchat{
     
-    left:0px;
+    margin:0;
     width: 100%;
     height: 950px;
     /*float:right;*/
@@ -26,8 +28,8 @@
 
 #onlineusers{
     background: black;
+    position:relative;
     
-    float:left;
     overflow: auto;
     border: 1px solid black;
     height: 950px;
@@ -92,6 +94,7 @@ h2{
     font-family: 'Press Start 2P';
     
     color:white;
+    position:relative;
     text-align: center;
 }
 

@@ -12,10 +12,6 @@ let allusers = []
 let sendtrue = false
 let test = document.getElementById('test')
 
-
-let url_string = (window.location.href).toLowerCase()
-let url = new URL(url_string)
-
 let cookies = document.cookie.split(';').map(cookie => cookie.split('=')).reduce((accumulator, [key, value]) => ({
     ...accumulator,[key.trim()]:decodeURIComponent(value)
 }), {});
@@ -45,7 +41,6 @@ let name = cookies.username
     
 
     socket.once('userjoinedmessage',(user)=>{
-        
             let div = document.createElement('div')
             div.classList.add('output')
             div.innerHTML = '<p>' + user.username+ ' has joined the chat</p>'
@@ -59,10 +54,7 @@ let name = cookies.username
 
 test.addEventListener('submit', e=>{
     e.preventDefault();
-    numberoftimes +=1
 
-    let url_string = (window.location.href).toLowerCase()
-    let url = new URL(url_string)
     let name = cookies.username
 
         if(name != null){
@@ -71,9 +63,8 @@ test.addEventListener('submit', e=>{
 
     // Get message text
     const msg = e.target.elements.message.value
-    let socketsid=socket.id;
+
     if(msg == "JARVISMODE"){
-        
         
     } else {
         socket.emit('chat',{

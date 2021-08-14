@@ -73,17 +73,13 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
                     disconnectss = false
 
                     //  *********** HERE UNCOMMENT IF U WANT TO IMPLEMENT "LEFT FUNCTION"
-
                     // setTimeout(() => {
-
-                    //     if(disconnectss == false){
-                            
+                    //     if(disconnectss == false){                            
                     //         console.log("33333333333333333333")
                     //         post_collection.insertOne({leftuser:user.username}, () => {
                     //              io.emit('userdisconnected',user)
                     //          })
                     //     }
-
                     // }, 2000);
                 
             })
