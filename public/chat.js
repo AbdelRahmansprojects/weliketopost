@@ -106,10 +106,11 @@ function outputusers(users) {
     userlist.innerHTML = `
       ${users.map(user => `<li>${user.username}</li>`).join('')}`;
     
-      for(var x =1; x <users.length; x++){
+      for(var x =0; x <users.length-1; x++){
         if(users[x].username == cookies.username){
-            alert("AAAAAAAAAAAAAA")
+        
         }
+        //alert(users[x].username)
         //alert(users[x].username)
       }
     
