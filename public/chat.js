@@ -8,26 +8,22 @@ let mainchat = document.getElementById('mainchat')
 let chatwindow = document.getElementById('chatwindow')
 let userlist = document.getElementById('users')
 let numberoftimes = 0
-let important = false
 let allusers = []
-let tester = false
-
 let sendtrue = false
 let test = document.getElementById('test')
 
 
 let url_string = (window.location.href).toLowerCase()
 let url = new URL(url_string)
-let name = url.searchParams.get('username')
-    
 
-    //alert(location.href.split(name))
+let cookies = document.cookie.split(';').map(cookie => cookie.split('=')).reduce((accumulator, [key, value]) => ({
+    ...accumulator,[key.trim()]:decodeURIComponent(value)
+}), {});
 
-    if(location.href.split(name)!="http://localhost:3000/home.html?username=,"){
-        
-        //location.replace("https://geekprank.com/hacker/?fbclid=IwAR2pgfR_q75CIHCbfqrsrhuHSgE2APsg3lrA6uYN8fbCrbIG8F4gqCI3cvs")
+let name = cookies.username
 
-    } 
+    document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
+    document.cookie = "randomnumber =; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
 
         socket.once('userdisconnected',function outputdisconnect(data){
             //  *********** HERE UNCOMMENT IF U WANT TO IMPLEMENT "LEFT FUNCTION"
@@ -70,7 +66,7 @@ test.addEventListener('submit', e=>{
 
     let url_string = (window.location.href).toLowerCase()
     let url = new URL(url_string)
-    let name = url.searchParams.get('username')
+    let name = cookies.username
 
         if(name != null){
             define = true

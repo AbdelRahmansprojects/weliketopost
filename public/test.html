@@ -19,10 +19,10 @@
 
         <div id = "username">
            
-            <p style="font-size: 20px;">  Username : <input type = text id = "handle" name="username" required/> </p>
+            <p style="font-size: 20px;">  Username : <input type = text id = "handle" required/> </p>
             
       
-            <button id = "submit">
+            <button id = "submit" onclick="getvalue()">
                 Submit Username
             </button>
 
@@ -33,16 +33,15 @@
             let thename = true
             let submit = document.getElementById('submit')
             let username = document.getElementById('username')
-            submit.addEventListener('click',()=>{
-                
-            })
             
             
+            function getvalue(){
+                let handlee = document.getElementById('handle').value
+                document.cookie = "username =" + handlee
+            }
+            
+        </script>
         
-        </script>
-        <script src = ../cool.js>
-            
-        </script>
 
 </form>
 

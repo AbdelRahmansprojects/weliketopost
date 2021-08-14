@@ -132,5 +132,11 @@ if (process.env.NODE_ENV === 'production') {
   // 2) When send /10110010 in message i have functions that i can do like make the entire text red 
   //   - **How to make it specific to only me 
   //   - How to make it 
+       
+        
 
+  // WHAT I WANNA DO RNNNN
+  // Make only diff usernames using cookies
+
+  //************ THEY WAY GOT USERNAME WAS FROM URL
   
