@@ -33,10 +33,13 @@
             let thename = true
             let submit = document.getElementById('submit')
             let username = document.getElementById('username')
+            let alltest = []
             
             
             function getvalue(){
                 let handlee = document.getElementById('handle').value
+                
+                document.cookie = "tester = " + alltest
                 document.cookie = "username =" + handlee
             }
             

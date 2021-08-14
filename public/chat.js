@@ -24,6 +24,7 @@ let name = cookies.username
 
     document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
     document.cookie = "randomnumber =; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
+    //alert(document.cookie)
 
         socket.once('userdisconnected',function outputdisconnect(data){
             //  *********** HERE UNCOMMENT IF U WANT TO IMPLEMENT "LEFT FUNCTION"
@@ -44,16 +45,12 @@ let name = cookies.username
     
 
     socket.once('userjoinedmessage',(user)=>{
-        //alert(mycookie)
         
-            
             let div = document.createElement('div')
             div.classList.add('output')
             div.innerHTML = '<p>' + user.username+ ' has joined the chat</p>'
             chatwindow.appendChild(div)
             //Cookies.set('ieat',true)
-        
-        
     })
 
     
@@ -108,15 +105,18 @@ function outputusers(users) {
 
     userlist.innerHTML = `
       ${users.map(user => `<li>${user.username}</li>`).join('')}`;
-
+    
+      for(var x =1; x <users.length; x++){
+        if(users[x].username == cookies.username){
+            alert("AAAAAAAAAAAAAA")
+        }
+        //alert(users[x].username)
+      }
+    
   }
 
   function outputmessage(message){
-    //alert(message[message.length-1].name)
     let messageslength = message.length -1
-    
-    //console.log(socket.id)
-    //console.log(message[0].socketsid)
     if(message.length){
         for(var x = 0;x < message.length;x++){
             
@@ -137,8 +137,6 @@ function outputusers(users) {
                 // chatwindow.appendChild(div)
                 //console.log(data.username)
             }
-            
-            //chatwindow.insertBefore(div, chatwindow.firstChild)
         }
     }
     
