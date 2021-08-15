@@ -41,14 +41,15 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
             
             socket.on('chat', function(data){
 
-                const user = getcurrentuser(socket.id)
+                const user = getcurrentuser(socket.id) 
                 let bismillah = data.socketsid
                 let messagechat = data.msg
                 let usersname = data.name
 
                 post_collection.insertOne({id:bismillah,msg:messagechat, name:usersname},()=>{
                     console.log([data])
-                    io.emit('chat',[data])                })
+                    io.emit('chat',[data])                
+                })
             })
 
             socket.on('usercounter',(data)=>{
@@ -134,5 +135,5 @@ if (process.env.NODE_ENV === 'production') {
   // WHAT I WANNA DO RNNNN
   // Make only diff usernames using cookies
 
-  //************ THEY WAY GOT USERNAME WAS FROM URL
+
   

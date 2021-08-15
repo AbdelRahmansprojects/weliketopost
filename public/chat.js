@@ -54,7 +54,7 @@ let name = cookies.username
 
 test.addEventListener('submit', e=>{
     e.preventDefault();
-
+    
     let name = cookies.username
 
         if(name != null){
@@ -64,26 +64,24 @@ test.addEventListener('submit', e=>{
     // Get message text
     const msg = e.target.elements.message.value
 
-    if(msg == "JARVISMODE"){
-        
-    } else {
+   
         socket.emit('chat',{
 
-            socketsid,msg,name
+            msg,name
         })
-    }
-
+    
+    alert(message.value)
     message.value = ""
 
 })
-if(socket !== undefined){
+
     socket.on('chat', function(message){ 
         //alert(message[message.length-1].msg)
         outputmessage(message)
         
         chatwindow.scrollTop = chatwindow.scrollHeight
     })
-}
+
 
 socket.on('usercounter',(data)=>{
 
