@@ -70,7 +70,6 @@ test.addEventListener('submit', e=>{
             msg,name
         })
     
-    alert(message.value)
     message.value = ""
 
 })
