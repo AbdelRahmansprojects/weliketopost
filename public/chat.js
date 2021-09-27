@@ -112,13 +112,13 @@ function outputusers(users) {
             let div = document.createElement('div')
                 div.classList.add('output')
             if(message[0].socketsid == socket.id){
-                div.innerHTML = `<p style = "text-align:right; font-size:25px;"><strong>` + message[x].name+` : </strong>` + message[x].msg + `</p>`
+                div.innerHTML = `<p style = "text-align:right; font-size:20px;"><strong>` + message[x].name+` : </strong>` + message[x].msg + `</p>`
                 chatwindow.appendChild(div)
 
             } else 
              if(message[x].name !== undefined){
 
-                div.innerHTML = `<p style = " font-size:25px"><strong>` + message[x].name+` : </strong>` + message[x].msg + `</p>`
+                div.innerHTML = `<p style = " font-size:20px"><strong>` + message[x].name+` : </strong>` + message[x].msg + `</p>`
                 chatwindow.appendChild(div)
             } else if(message[x].leftuser){
                 

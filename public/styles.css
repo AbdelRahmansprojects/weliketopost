@@ -1,10 +1,17 @@
 html,body {
-    margin:0;
-    height: 100vh;
+    margin:0px;
+  height:100%;
+
 }
 
 .mainchat {
-    height: 100vh;
+    position:absolute;
+  top:0px;
+  right:0px;
+  bottom:0px;
+  left:0px;
+    
+
 }
 
 /*entire chat*/
