@@ -60,6 +60,9 @@ test.addEventListener('submit', e=>{
         if(name != null){
             define = true
         }
+        var d = new Date();
+        var t = d.getTime();
+        
 
     // Get message text
     const msg = e.target.elements.message.value
