@@ -56,6 +56,7 @@ test.addEventListener('submit', e=>{
     e.preventDefault();
     
     let name = cookies.username
+    alert(name)
 
         if(name != null){
             define = true

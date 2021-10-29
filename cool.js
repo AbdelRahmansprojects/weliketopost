@@ -30,7 +30,7 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
         let post_collection = db.collection('posts') 
         
         //post_collection.remove()
-            post_collection.find().limit(100).sort({_id:1}).toArray(function(err,res){  
+            post_collection.find().limit(200).sort({_id:1}).toArray(function(err,res){  
                 //console.log(res)  
                 socket.emit('chat', res);
                 
