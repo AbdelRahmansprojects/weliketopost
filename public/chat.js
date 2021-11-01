@@ -68,10 +68,7 @@ test.addEventListener('submit', e=>{
 
     // Get message text
     const msg = e.target.elements.message.value
-        if(name = "Owner1"){
-            //alert("red")
-        }
-   
+      
         socket.emit('chat',{
 
             msg,name,color
