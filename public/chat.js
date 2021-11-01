@@ -57,7 +57,7 @@ test.addEventListener('submit', e=>{
     
     let name = cookies.username
     let color = "black"
-    alert(name)
+   
 
         if(name != null){
             define = true
@@ -69,7 +69,7 @@ test.addEventListener('submit', e=>{
     // Get message text
     const msg = e.target.elements.message.value
         if(name = "Owner1"){
-            alert("red")
+            //alert("red")
         }
    
         socket.emit('chat',{
@@ -105,8 +105,6 @@ function outputusers(users) {
         if(users[x].username == cookies.username){
         
         }
-        //alert(users[x].username)
-        //alert(users[x].username)
       }
     
   }
