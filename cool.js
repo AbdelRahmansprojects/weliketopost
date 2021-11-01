@@ -45,8 +45,9 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
                 
                 let messagechat = data.msg
                 let usersname = data.name
+                let userscolor= data.color
 
-                post_collection.insertOne({msg:messagechat, name:usersname},()=>{
+                post_collection.insertOne({msg:messagechat, name:usersname, color:userscolor},()=>{
                     console.log([data])
                     io.emit('chat',[data])                
                 })

@@ -56,6 +56,7 @@ test.addEventListener('submit', e=>{
     e.preventDefault();
     
     let name = cookies.username
+    let color = "black"
     alert(name)
 
         if(name != null){
@@ -67,11 +68,13 @@ test.addEventListener('submit', e=>{
 
     // Get message text
     const msg = e.target.elements.message.value
-
+        if(name = "Owner1"){
+            alert("red")
+        }
    
         socket.emit('chat',{
 
-            msg,name
+            msg,name,color
         })
     
     message.value = ""
@@ -94,7 +97,7 @@ socket.on('usercounter',(data)=>{
 })
 
 function outputusers(users) {
-
+    
     userlist.innerHTML = `
       ${users.map(user => `<li>${user.username}</li>`).join('')}`;
     
@@ -109,6 +112,7 @@ function outputusers(users) {
   }
 
   function outputmessage(message){
+    
     let messageslength = message.length -1
     if(message.length){
         for(var x = 0;x < message.length;x++){
