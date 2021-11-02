@@ -37,8 +37,8 @@ html,body {
 
 /* the white part in the chat*/
 #chatwindow{
-    max-height: 700px; 
-    min-height: 700px; 
+    max-height: 75%; 
+    min-height: 75%; 
     /* 760 */
     overflow:auto;
     font-family: 'Nunito';
