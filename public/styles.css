@@ -1,7 +1,18 @@
 html,body {
-    margin:0px;
-  height:100%;
+    
+  top: 0; 
+  left: 0; 
+	
+  /* Preserve aspet ratio */
+  max-width: 100%;
+  max-height: 100%;
 
+}
+@media(min-width:900px){
+    body{
+        height: 100vh;
+        overflow:hidden;
+    }
 }
 
 .mainchat {
@@ -26,7 +37,8 @@ html,body {
 
 /* the white part in the chat*/
 #chatwindow{
-    height: 760px; 
+    max-height: 700px; 
+    min-height: 700px; 
     /* 760 */
     overflow:auto;
     font-family: 'Nunito';
@@ -62,7 +74,7 @@ html,body {
 
 
 #username{
-    width: 600px;
+    width: 60%;
     
     margin: 270px auto;
     border: 1px solid black;
