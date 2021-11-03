@@ -17,7 +17,9 @@ let cookies = document.cookie.split(';').map(cookie => cookie.split('=')).reduce
 }), {});
 
 let name = cookies.username
-
+if(name =="qazi101"){
+    name = "QAZI(VIP)"
+}
     document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
     document.cookie = "randomnumber =; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
     //alert(document.cookie)
@@ -68,7 +70,11 @@ test.addEventListener('submit', e=>{
 
     // Get message text
     const msg = e.target.elements.message.value
-      
+        if(name == "qazi101"){
+            color = "rainbow"
+            name = "QAZI(VIP)"
+        }
+   
         socket.emit('chat',{
 
             msg,name,color
@@ -114,21 +120,15 @@ function outputusers(users) {
             
             let div = document.createElement('div')
                 div.classList.add('output')
-            if(message[0].socketsid == socket.id){
-                div.innerHTML = `<p style = "text-align:right; font-size:20px;"><strong>` + message[x].name+` : </strong>` + message[x].msg + `</p>`
+             if(message[x].color == "rainbow"){
+                div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong  class="rainbow rainbow_text_animated">` + message[x].name+` : </strong>` + message[x].msg + `</p>`
                 chatwindow.appendChild(div)
 
-            } else 
-             if(message[x].name !== undefined){
+             } else if(message[x].name !== undefined){
 
-                div.innerHTML = `<p style = " font-size:20px"><strong>` + message[x].name+` : </strong>` + message[x].msg + `</p>`
+                div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; color: white;" ><strong  style = " color: #575ed8;">` + message[x].name+` : </strong>` + message[x].msg + `</p>`
                 chatwindow.appendChild(div)
-            } else if(message[x].leftuser){
-                
-                // div.innerHTML = '<p>' + message[x].leftuser+ ' has left the chat</p>'
-                // chatwindow.appendChild(div)
-                //console.log(data.username)
-            }
+            } 
         }
     }
     
