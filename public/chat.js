@@ -23,7 +23,7 @@ if(name =="qazi101"){
 if(name =="50cent101"){
     name = "50CENT(VIP)(WISH DEATH UPON ME)"
 }
-if(name =="owner101"){
+if(name =="owner1011"){
     name = "OWNER"
 }
     document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
@@ -84,7 +84,7 @@ test.addEventListener('submit', e=>{
             color = "rainbow"
             name = "50CENT(VIP🐐)"
         }
-        if(name == "owner101"){
+        if(name == "owner1011"){
             color="red"
             name = "OWNER"
         }
