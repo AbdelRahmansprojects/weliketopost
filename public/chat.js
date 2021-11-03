@@ -20,6 +20,9 @@ let name = cookies.username
 if(name =="qazi101"){
     name = "QAZI(VIP)"
 }
+if(name =="50cent101"){
+    name = "50CENT(VIP)(WISH DEATH UPON ME)"
+}
     document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
     document.cookie = "randomnumber =; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
     //alert(document.cookie)
@@ -73,6 +76,10 @@ test.addEventListener('submit', e=>{
         if(name == "qazi101"){
             color = "rainbow"
             name = "QAZI(VIP)"
+        }
+        if(name == "50cent101"){
+            color = "rainbow"
+            name = "50CENT(VIP🐐)"
         }
    
         socket.emit('chat',{
