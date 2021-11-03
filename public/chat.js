@@ -23,6 +23,9 @@ if(name =="qazi101"){
 if(name =="50cent101"){
     name = "50CENT(VIP)(WISH DEATH UPON ME)"
 }
+if(name =="owner101"){
+    name = "OWNER"
+}
     document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
     document.cookie = "randomnumber =; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
     //alert(document.cookie)
@@ -81,6 +84,10 @@ test.addEventListener('submit', e=>{
             color = "rainbow"
             name = "50CENT(VIP🐐)"
         }
+        if(name == "owner101"){
+            color="red"
+            name = "OWNER"
+        }
    
         socket.emit('chat',{
 
@@ -127,11 +134,15 @@ function outputusers(users) {
             
             let div = document.createElement('div')
                 div.classList.add('output')
+            
              if(message[x].color == "rainbow"){
                 div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong  class="rainbow rainbow_text_animated">` + message[x].name+` : </strong>` + message[x].msg + `</p>`
                 chatwindow.appendChild(div)
 
-             } else if(message[x].name !== undefined){
+             } else if(message[x].color=="red"){
+                div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong style = "color:orange;">` + message[x].name+` : </strong>` + message[x].msg + `</p>`
+                chatwindow.appendChild(div)
+            }else if(message[x].name !== undefined){
 
                 div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; color: white;" ><strong  style = " color: #575ed8;">` + message[x].name+` : </strong>` + message[x].msg + `</p>`
                 chatwindow.appendChild(div)
