@@ -11,7 +11,7 @@ let numberoftimes = 0
 let allusers = []
 let sendtrue = false
 let test = document.getElementById('test')
-
+let dates = []
 let cookies = document.cookie.split(';').map(cookie => cookie.split('=')).reduce((accumulator, [key, value]) => ({
     ...accumulator,[key.trim()]:decodeURIComponent(value)
 }), {});
@@ -26,39 +26,15 @@ if(name =="50cent101"){
 if(name =="owner1011"){
     name = "OWNER"
 }
+        
+
+
     document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
     document.cookie = "randomnumber =; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
-    //alert(document.cookie)
 
-        socket.once('userdisconnected',function outputdisconnect(data){
-            //  *********** HERE UNCOMMENT IF U WANT TO IMPLEMENT "LEFT FUNCTION"
-            
-            // let div = document.createElement('div')
-            // div.classList.add('output')
-            // div.innerHTML = '<p>' + data.username+ ' has left the chat</p>'
-            // chatwindow.appendChild(div)
-            // console.log(data.username)
-        })
-    
-        
-        //usersarray.push(name)
     socket.emit('user_joined',name)
     socket.emit('usercounter', name)
-    
-    
-    
 
-    socket.once('userjoinedmessage',(user)=>{
-            let div = document.createElement('div')
-            div.classList.add('output')
-            div.innerHTML = '<p>' + user.username+ ' has joined the chat</p>'
-            chatwindow.appendChild(div)
-            //Cookies.set('ieat',true)
-    })
-
-    
-    
-    
 
 test.addEventListener('submit', e=>{
     e.preventDefault();
@@ -70,28 +46,33 @@ test.addEventListener('submit', e=>{
         if(name != null){
             define = true
         }
-        var d = new Date();
-        var t = d.getTime();
-        
 
     // Get message text
     const msg = e.target.elements.message.value
-        if(name == "qazi101"){
-            color = "rainbow"
-            name = "QAZI(VIP)"
+    if(name == "qazi101"){
+        color = "rainbow"
+        name = "QAZI(VIP)"
+    }
+    if(name == "50cent101"){
+        color = "rainbow"
+        name = "50CENT(VIP🐐)"
+    }
+    if(name == "owner1011"){
+        color="red"
+        name = "OWNER"
         }
-        if(name == "50cent101"){
-            color = "rainbow"
-            name = "50CENT(VIP🐐)"
-        }
-        if(name == "owner1011"){
-            color="red"
-            name = "OWNER"
-        }
-   
+
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var time = date+"      |      "+time;
+        alert(date)
+        //alert(dateTime)
+        
+
         socket.emit('chat',{
 
-            msg,name,color
+            msg,name,color,time
         })
     
     message.value = ""
@@ -101,6 +82,7 @@ test.addEventListener('submit', e=>{
     socket.on('chat', function(message){ 
         //alert(message[message.length-1].msg)
         outputmessage(message)
+        console.log(message[0].time)
         
         chatwindow.scrollTop = chatwindow.scrollHeight
     })
@@ -134,17 +116,17 @@ function outputusers(users) {
             
             let div = document.createElement('div')
                 div.classList.add('output')
-            
+                //alert(message[x].dateTime)
              if(message[x].color == "rainbow"){
-                div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong  class="rainbow rainbow_text_animated">` + message[x].name+` : </strong>` + message[x].msg + `</p>`
+                div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong  class="rainbow rainbow_text_animated">` + message[x].name+` : </strong>` + message[x].msg +  ` <strong style = "text-align:right; font-size:10px;color:grey;">` + message[x].time+ `  </strong> </p>`
                 chatwindow.appendChild(div)
 
              } else if(message[x].color=="red"){
-                div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong style = "color:orange;">` + message[x].name+` : </strong>` + message[x].msg + `</p>`
+                div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong style = "color:orange;">` + message[x].name+` : </strong>` + message[x].msg +  ` <strong style = "text-align:right; font-size:10px;color:grey;">` + message[x].time+ `  </strong> </p>`
                 chatwindow.appendChild(div)
             }else if(message[x].name !== undefined){
 
-                div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; color: white;" ><strong  style = " color: #575ed8;">` + message[x].name+` : </strong>` + message[x].msg + `</p>`
+                div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; color: white;" ><strong  style = " color: #575ed8;">` + message[x].name+` : </strong>` + message[x].msg + ` <strong style = "text-align:right; font-size:10px; color:grey;">` + message[x].time+ `  </strong> </p>`
                 chatwindow.appendChild(div)
             } 
         }
