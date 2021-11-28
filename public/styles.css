@@ -31,8 +31,9 @@ html,body {
     margin:0;
     height:100vh;
     /*float:right;*/
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid white;
     background-color:rgb(20, 80, 82);
+    
 }
 
 /* the white part in the chat*/
@@ -41,6 +42,7 @@ html,body {
     min-height: 75%; 
     /* 760 */
     overflow:auto;
+    border: 1px solid white;
     font-family: 'Nunito';
     background: black;
 }
@@ -50,7 +52,7 @@ html,body {
     position:relative;
     
     overflow: auto;
-    border: 1px solid black;
+    border: 1px solid white;
     height: 100%;
     width: 20%;
     float:left; 
