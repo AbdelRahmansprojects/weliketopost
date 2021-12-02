@@ -28,7 +28,9 @@ if(name =="owner1011"){
     name = "OWNER"
 }
         
-
+if(name == null){
+    location.replace("https://weliketopost.herokuapp.com/")
+}
 
     document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
     document.cookie = "randomnumber =; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
