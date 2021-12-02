@@ -7,9 +7,10 @@ let handle = document.getElementById('handle')
 let mainchat = document.getElementById('mainchat')
 let chatwindow = document.getElementById('chatwindow')
 let userlist = document.getElementById('users')
+let feedback = document.getElementById('feedback')
 let numberoftimes = 0
 let allusers = []
-let sendtrue = false
+let typing = false
 let test = document.getElementById('test')
 let dates = []
 let cookies = document.cookie.split(';').map(cookie => cookie.split('=')).reduce((accumulator, [key, value]) => ({
@@ -34,6 +35,45 @@ if(name =="owner1011"){
 
     socket.emit('user_joined',name)
     socket.emit('usercounter', name)
+
+// message.addEventListener('keypress',()=>{
+    
+//     typing = true
+    
+    
+//     socket.emit('typing',name)
+//     clearTimeout(mytest)
+// })
+
+message.addEventListener("keyup", function(){
+    // typing = false
+    // mytest = setTimeout(()=>{
+    //     if(testing == false){
+    //         socket.emit('typing',"stop")
+    //     }
+      
+    // },3000)
+    // if(typing ==true){
+    //     clearTimeout(mytest)
+    // }
+    // console.log("keyup")
+
+    if(typing ==false){
+        typing =true
+        socket.emit('typing',name)
+        timeout = setTimeout(()=>{
+            typing = false;
+            socket.emit('typing',"stop")
+        },3000)
+    } else{
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            typing = false;
+            socket.emit('typing',"stop")
+        }, 3000);
+    }
+});
+//i think cuz set timeout does the timer just once it dosent reset the timer something like that
 
 
 test.addEventListener('submit', e=>{
@@ -79,13 +119,25 @@ test.addEventListener('submit', e=>{
 
 })
 
-    socket.on('chat', function(message){ 
-        //alert(message[message.length-1].msg)
-        outputmessage(message)
-        console.log(message[0].time)
+socket.on('chat', function(message){ 
+    feedback.innerHTML="";
+    outputmessage(message)
+    console.log(message[0].time)
         
+    chatwindow.scrollTop = chatwindow.scrollHeight
+})
+
+socket.on('typing',(data)=>{
+    if(data=="stop"){
+            feedback.innerHTML =""
+    } else{
+        feedback.innerHTML +='<p style = "color:white;"><em>' +data + ' is typing a message....' + '</em></p>'
         chatwindow.scrollTop = chatwindow.scrollHeight
-    })
+    }
+    
+})
+
+
 
 
 socket.on('usercounter',(data)=>{
@@ -98,7 +150,7 @@ socket.on('usercounter',(data)=>{
 function outputusers(users) {
     
     userlist.innerHTML = `
-      ${users.map(user => `<li>${user.username}</li>`).join('')}`;
+      ${users.map(user => `<li style = "color:white;">${user.username}</li>`).join('')}`;
     
       for(var x =0; x <users.length-1; x++){
         if(users[x].username == cookies.username){
@@ -114,20 +166,13 @@ function outputusers(users) {
     if(message.length){
         for(var x = 0;x < message.length;x++){
             
-            let div = document.createElement('div')
-                div.classList.add('output')
-                //alert(message[x].dateTime)
+            let div = output
              if(message[x].color == "rainbow"){
-                div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong  class="rainbow rainbow_text_animated">` + message[x].name+` : </strong>` + message[x].msg +  ` <strong style = "text-align:right; font-size:10px;color:grey;">` + message[x].time+ `  </strong> </p>`
-                chatwindow.appendChild(div)
-
+                div.innerHTML += `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong  class="rainbow rainbow_text_animated">` + message[x].name+` : </strong>` + message[x].msg +  ` <strong style = "text-align:right; font-size:10px;color:grey;">` + message[x].time+ `  </strong> </p>`
              } else if(message[x].color=="red"){
-                div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong style = "color:orange;">` + message[x].name+` : </strong>` + message[x].msg +  ` <strong style = "text-align:right; font-size:10px;color:grey;">` + message[x].time+ `  </strong> </p>`
-                chatwindow.appendChild(div)
+                div.innerHTML += `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong style = "color:orange;">` + message[x].name+` : </strong>` + message[x].msg +  ` <strong style = "text-align:right; font-size:10px;color:grey;">` + message[x].time+ `  </strong> </p>`
             }else if(message[x].name !== undefined){
-
-                div.innerHTML = `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; color: white;" ><strong  style = " color: #575ed8;">` + message[x].name+` : </strong>` + message[x].msg + ` <strong style = "text-align:right; font-size:10px; color:grey;">` + message[x].time+ `  </strong> </p>`
-                chatwindow.appendChild(div)
+                div.innerHTML+= `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; color: white;" ><strong  style = " color: #575ed8;">` + message[x].name+` : </strong>` + message[x].msg + ` <strong style = "text-align:right; font-size:10px; color:grey;">` + message[x].time+ `  </strong> </p>`
             } 
         }
     }

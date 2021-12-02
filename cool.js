@@ -39,6 +39,10 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
             connections.push(socket)
             console.log("Connected: %s sockets connected", connections.length)
             
+            socket.on('typing',(data)=>{
+                socket.broadcast.emit('typing',data)
+            })
+
             socket.on('chat', function(data){
 
                 const user = getcurrentuser(socket.id) 
@@ -134,8 +138,7 @@ if (process.env.NODE_ENV === 'production') {
        
         
 
-  // WHAT I WANNA DO RNNNN
-  // Make only diff usernames using cookies
+  // NUMBER 1 TIP: THINK LIKE A ROBOT EXACTLYYYYYYYYYYYYYYYYYYYYYYYYYY
 
 
   
