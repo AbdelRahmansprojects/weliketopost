@@ -31,7 +31,7 @@ html,body {
     margin:0;
     height:100vh;
     /*float:right;*/
-    border: 1px solid lime;
+    /* border: 1px solid lime; */
     background-color:rgb(20, 80, 82);
     
 }
@@ -42,7 +42,7 @@ html,body {
     min-height: 75%; 
     /* 760 */
     overflow:auto;
-    border: 1px solid lime;
+    /* border: 1px solid lime; */
     font-family: 'Nunito';
     background: black;
 }
@@ -52,7 +52,7 @@ html,body {
     position:relative;
     
     overflow: auto;
-    border: 1px solid lime;
+    /* border: 1px solid lime; */
     height: 100%;
     width: 20%;
     float:left; 
