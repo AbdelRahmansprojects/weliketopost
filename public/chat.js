@@ -96,15 +96,15 @@ test.addEventListener('submit', e=>{
     // Get message text
     const msg = e.target.elements.message.value
     if(name == "qazi101"){
-        color = "rainbow"
+        color = "red"
         name = "QAZI(VIP)"
     }
     if(name == "50cent101"){
-        color = "rainbow"
+        color = "red"
         name = "50CENT(VIP🐐)"
     }
     if(name == "owner1011"){
-        color="red"
+        color="rainbow"
         name = "OWNER"
         }
 
