@@ -182,7 +182,7 @@ function outputusers(users) {
                 div.innerHTML += `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong style = "color:orange;">` + message[x].name+` : </strong>` + message[x].msg +  ` <strong style = "text-align:right; font-size:10px;color:grey;">` + message[x].time+ `  </strong> </p>`
             }else if(message[x].name !== undefined){
                 div.innerHTML+= `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; color: white;" ><strong  style = " color: #575ed8;">` + message[x].name+` : </strong>` + message[x].msg + ` <strong style = "text-align:right; font-size:10px; color:grey;">` + message[x].time+ `  </strong> </p>`
-            } else if (message[x].name == "realred"){
+            } else if (message[x].color == "realred"){
                 div.innerHTML += `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong style = "color:red;">` + message[x].name+` : </strong>` + message[x].msg +  ` <strong style = "text-align:right; font-size:10px;color:grey;">` + message[x].time+ `  </strong> </p>`
             }
         }
