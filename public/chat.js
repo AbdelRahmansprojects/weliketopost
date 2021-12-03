@@ -124,7 +124,7 @@ test.addEventListener('submit', e=>{
 socket.on('chat', function(message){ 
     feedback.innerHTML="";
     outputmessage(message)
-    // chatwindow.scrollTop = chatwindow.scrollHeight
+    chatwindow.scrollTop = chatwindow.scrollHeight
 })
 
 socket.on('typing',(data)=>{
