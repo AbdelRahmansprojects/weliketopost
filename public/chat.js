@@ -27,6 +27,10 @@ if(name =="50cent101"){
 if(name =="owner1011"){
     name = "OWNER"
 }
+
+if(name == "ayyan1010"){
+    name = "AYYAN(VIP)"
+}
         
 if(name == null){
     location.replace("https://weliketopost.herokuapp.com/")
@@ -104,6 +108,11 @@ test.addEventListener('submit', e=>{
         name = "OWNER"
         }
 
+    if(name == "ayyan1010"){
+        name = "AYYAN(VIP)"
+        color="realred"
+    }
+
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -173,7 +182,9 @@ function outputusers(users) {
                 div.innerHTML += `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong style = "color:orange;">` + message[x].name+` : </strong>` + message[x].msg +  ` <strong style = "text-align:right; font-size:10px;color:grey;">` + message[x].time+ `  </strong> </p>`
             }else if(message[x].name !== undefined){
                 div.innerHTML+= `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; color: white;" ><strong  style = " color: #575ed8;">` + message[x].name+` : </strong>` + message[x].msg + ` <strong style = "text-align:right; font-size:10px; color:grey;">` + message[x].time+ `  </strong> </p>`
-            } 
+            } else if (message[x].name == "realred"){
+                div.innerHTML += `<p style = " font-size:20px; padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left; color:white; "><strong style = "color:red;">` + message[x].name+` : </strong>` + message[x].msg +  ` <strong style = "text-align:right; font-size:10px;color:grey;">` + message[x].time+ `  </strong> </p>`
+            }
         }
     }
     
