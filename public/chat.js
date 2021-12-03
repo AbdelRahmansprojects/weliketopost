@@ -124,16 +124,14 @@ test.addEventListener('submit', e=>{
 socket.on('chat', function(message){ 
     feedback.innerHTML="";
     outputmessage(message)
-    console.log(message[0].time)
-        
-    chatwindow.scrollTop = chatwindow.scrollHeight
+    // chatwindow.scrollTop = chatwindow.scrollHeight
 })
 
 socket.on('typing',(data)=>{
     if(data=="stop"){
-            feedback.innerHTML =""
+        feedback.innerHTML =""
     } else{
-        feedback.innerHTML +='<p style = "color:white;"><em>' +data + ' is typing a message....' + '</em></p>'
+        feedback.innerHTML +='<p style = "color:white;  padding: 14px 0px; margin: 0 20px; border-bottom: black; text-align: left;"><em>' +data + ' is typing a message....' + '</em></p>'
         chatwindow.scrollTop = chatwindow.scrollHeight
     }
     
