@@ -58,6 +58,8 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
                 })
             })
 
+            
+
             socket.on('usercounter',(data)=>{
                 
                 io.emit('usercounter',{
@@ -125,17 +127,14 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve(process.cwd(), 'public')))
-    app.get('*', (req, res) => {
+    app.get('/', (req, res) => {
       res.sendFile(path.resolve(process.cwd(), 'public/test.html'))
     })
   }
 
   //WHAT I WANT TO DO: 
-  // 1) Add cookies so i can make join function and other stuff but iu can do it later
-  // 2) When send /10110010 in message i have functions that i can do like make the entire text red 
-  //   - **How to make it specific to only me 
-  //   - How to make it 
-       
+  // 1) Private message? thinking nah cuz
+  // 2) video chat?
         
 
   // NUMBER 1 TIP: THINK LIKE A ROBOT EXACTLYYYYYYYYYYYYYYYYYYYYYYYYYY
