@@ -132,12 +132,16 @@ if (process.env.NODE_ENV === 'production') {
     })
   }
 
+  app.get('/secretadminroom', (req, res) => {
+    res.sendFile(path.resolve(process.cwd(), 'public/videoroom.html'))
+  })
+
   //WHAT I WANT TO DO: 
-  // 1) Private message? thinking nah cuz
-  // 2) video chat?
+  // --video chat:
+  //    - secretroom it shows everyone camera thats all
         
 
   // NUMBER 1 TIP: THINK LIKE A ROBOT EXACTLYYYYYYYYYYYYYYYYYYYYYYYYYY
-
-
+  
+  
   
