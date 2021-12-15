@@ -9,7 +9,7 @@ const io = socket(server)
 const fs = require('fs')
 const {userjoin,getcurrentuser, userleave,users} = require('./public/user');
 const e = require('express');
-const { globalEval } = require('jquery');
+const { globalEval, data } = require('jquery');
 let testusers = []
 server.listen(process.env.PORT || 3000);
 
@@ -59,6 +59,9 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
             })
 
             
+            socket.on("peerjoined",(data)=>{
+                console.log(data)    
+            })
 
             socket.on('usercounter',(data)=>{
                 
