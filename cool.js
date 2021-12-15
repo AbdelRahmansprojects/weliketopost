@@ -60,7 +60,7 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
 
             
             socket.on("peerjoined",(data)=>{
-                console.log(data)    
+                socket.emit('user-connected',data) 
             })
 
             socket.on('usercounter',(data)=>{
