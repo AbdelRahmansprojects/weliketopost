@@ -10,10 +10,7 @@
                 <h1 class="rainbow rainbow_text_animated"> DO YOU LIKE TO POST?</h1>
             </a>
         </div> 
-
         
-        
-
         <div style="color:white; text-align:center; position:relative;top: 100px;font-family: 'Open Sans', sans-serif; color:pink;">
             
         </div>
@@ -21,7 +18,7 @@
         <div id = "username">
             
             <b><p style="font-size: 20px;">  Username : <input type = text id = "handle" style="width: 200px;" required /> </p> </b>
-            
+            <progress style="width: 50%; height: 5%;">dgdfgdf</progress>
       
             <button id = "submit" onclick="getvalue()">
                 Submit Username
@@ -40,7 +37,7 @@
             let alltest = []
             
             if(cookies.username !=undefined){
-                //location.replace("https://weliketopost.herokuapp.com/home.html?")
+                location.replace("https://weliketopost.herokuapp.com/home.html?")
             }
             function getvalue(){
                 let handlee = document.getElementById('handle').value
