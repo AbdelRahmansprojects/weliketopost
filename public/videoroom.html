@@ -12,7 +12,7 @@ peer.on('open',userid=> {
 myVideo.muted = true
 
 navigator.mediaDevices.getUserMedia({
-    //video:true,
+    video:true,
     audio:true
 }).then(stream=>{
     //all this does is just make the element video source object equal to stream. And when loadedmeta data the video plays
