@@ -7,11 +7,12 @@
 var socket = io.connect()
 const videoGrid = document.getElementById('video-grid')
 const myVideo = document.createElement('video')
-const peer = new Peer()
-
-peer.on('open', id => {
-  socket.emit('peerjoined', id)
+const peer = new Peer(undefined, {
+    host:'/secretadminroom',
+    port:'3000'
 })
+
+
 
 
 myVideo.muted = true
@@ -53,7 +54,9 @@ navigator.mediaDevices.getUserMedia({
     ////////////make calls
 })
 
-
+peer.on('open', id => {
+  socket.emit('peerjoined', id)
+})
 
 function addVideoStream(video, stream){
     video.srcObject = stream
