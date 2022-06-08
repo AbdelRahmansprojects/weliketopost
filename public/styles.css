@@ -40,6 +40,7 @@ html,body {
 #chatwindow{
     max-height: 75%; 
     min-height: 75%; 
+    
     /* 760 */
     overflow:auto;
     /* border: 1px solid lime; */
@@ -222,8 +223,8 @@ body{
 #x{
     position:absolute;
     top:20%;
-    width:10%;
+    width:100px;
     height:50%;
     bottom:20%;
-    left:7%
+    left:2%
 }
