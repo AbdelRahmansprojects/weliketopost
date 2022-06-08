@@ -1,8 +1,8 @@
 <html>
     
-
+    <title> weliketopost</title>
     <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
-
+    
     <form action = 'home.html' id = 'test2'>
         
         <div id = "sign"  style="color: white; text-align: center; font-size: 100px; position: relative; font-family: 'Open Sans', sans-serif; top: 100px;">
@@ -16,16 +16,21 @@
         </div>
 
         <div id = "username">
+            <div style="background-color: white;">
+                <b><p style="font-size: 20px;">  Username : <input type = text id = "handle" style="width: max-content;" required /> </p> </b>
+                <p style="font-size: 18px;">NOTE: CONGRATS CLASS OF 2022👍
+                </p>
+        
+                <button id = "submit" onclick="getvalue()">
+                    Submit Username
+                </button>
+            </div>
             
-            <b><p style="font-size: 20px;">  Username : <input type = text id = "handle" style="width: 200px;" required /> </p> </b>
-            <progress style="width: 50%; height: 5%;">dgdfgdf</progress>
-      
-            <button id = "submit" onclick="getvalue()">
-                Submit Username
-            </button>
-
+                <img id = "x" src = "img/mytest.jpg" >
         </div>
-        <p style=" bottom:50%; left:50%;color:white;  opacity: 0.5;font-size: 20px;"> weliketopost™ </p>
+        
+        <p style=" position:absolute;top:95%; color:white;  opacity: 0.5;font-size: 20px;"> weliketopost™ </p>
+        
         <script>
             
             let cookies = document.cookie.split(';').map(cookie => cookie.split('=')).reduce((accumulator, [key, value]) => ({
@@ -37,13 +42,15 @@
             let alltest = []
             
             if(cookies.username !=undefined){
-                location.replace("https://weliketopost.herokuapp.com/home.html?")
+                //location.replace("https://weliketopost.herokuapp.com/home.html?")
             }
+
             function getvalue(){
                 let handlee = document.getElementById('handle').value
                
                 document.cookie = "username =" + handlee
             }
+            
             
             
         </script>

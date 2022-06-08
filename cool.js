@@ -136,5 +136,5 @@ if (process.env.NODE_ENV === 'production') {
 
   // NUMBER 1 TIP: THINK LIKE A ROBOT EXACTLYYYYYYYYYYYYYYYYYYYYYYYYYY
   
-  
+  // main objective: get ahead coding career 
    
