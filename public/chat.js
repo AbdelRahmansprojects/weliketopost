@@ -33,7 +33,7 @@ if(name == "asdf1011"){
 }
         
 if(name == null){
-    location.replace("https://weliketopost.herokuapp.com/")
+    location.replace("https://web-production-9bb0.up.railway.app/")
 }
 
     document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
