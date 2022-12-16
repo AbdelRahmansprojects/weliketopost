@@ -34,6 +34,9 @@ if(name == "asdf1011"){
         
 if(name == null){
     //location.replace("https://web-production-9bb0.up.railway.app/")
+    let test = document.URL;
+    let myArray = test.split("/",3)
+    location.replace(myArray[0] + "/" + "/" + myArray[1] + myArray[2])
 }
 
     document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"

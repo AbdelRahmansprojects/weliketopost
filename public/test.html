@@ -43,6 +43,9 @@
             
             if(cookies.username !=undefined){
                 //location.replace("https://weliketopost.herokuapp.com/home.html?")
+                let test = document.URL;
+                let myArray = test.split("/",3)
+                location.replace(myArray[0] + "/" + "/" + myArray[1] + myArray[2] + "/home.html?")
             }
 
             function getvalue(){
