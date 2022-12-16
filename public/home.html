@@ -96,8 +96,8 @@
   function change(){
 
     document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
-    alert(document.URL)
-    location.replace("https://web-production-9bb0.up.railway.app/")
+    alert(document.URL.split("/", 3).join("/").length)
+    location.replace("https://web-production-9bb0.up.railway.app")
   }
 </script>
 
