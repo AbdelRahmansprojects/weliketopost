@@ -8,7 +8,7 @@
 
 <p>fsdfjk</p>
 <script>
-// var socket = io.connect()
+var socket = io.connect()
 // const videoGrid = document.getElementById('video-grid')
 // const myVideo = document.createElement('video')
 // const peer = new Peer(undefined, {
@@ -92,6 +92,7 @@ connection.onaddstream = (event) => {
 // Set up event handlers for the buttons
 document.getElementById('start-button').addEventListener('click', () => {
   // Start the video chat by requesting access to the user's webcam and microphone
+                                                                    // if user accepts stream
   navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
     // Display the local stream on the page
     localVideo.srcObject = stream;
@@ -122,11 +123,9 @@ document.getElementById('hang-up-button').addEventListener('click', () => {
 
 // Send a message to the other peer via the signaling server
 function sendMessage(message) {
+
   // Replace this with code to send the message to the signaling server
 }
-
-
-
 
 </script>
 
@@ -143,3 +142,4 @@ function sendMessage(message) {
     }
 
 </style>
+
