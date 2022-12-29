@@ -89,7 +89,7 @@ connection.onaddstream = (event) => {
   remoteVideo.srcObject = event.stream;
 };
 
-pc.onnegotiationneeded = e => {
+connection.onnegotiationneeded = e => {
   if (pc.signalingState != "stable"){ 
     return "x";
   }
