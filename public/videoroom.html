@@ -85,12 +85,13 @@ connection.onicecandidate = (event) => {
   }
 };
 connection.onaddstream = (event) => {
-  // When the connection receives a stream, display it on the page
+  // When the connection receives a stream, display it on the 
+  alert("sa")
   remoteVideo.srcObject = event.stream;
 };
 
 connection.onnegotiationneeded = e => {
-  if (pc.signalingState != "stable"){ 
+  if (connection.signalingState != "stable"){ 
     return "x";
   }
   
@@ -109,6 +110,7 @@ document.getElementById('start-button').addEventListener('click', () => {
     connection.createOffer().then((offer) => {
       // When the offer is created, send it to the other peer
       sendMessage({ type: 'offer', offer: offer });
+      
       // Set the offer as the local description of the connection
       connection.setLocalDescription(offer);
     });
