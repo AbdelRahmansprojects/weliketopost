@@ -116,12 +116,17 @@ document.getElementById('start-button').addEventListener('click', () => {
 });
 document.getElementById('call-button').addEventListener('click', () => {
   // Answer the call by creating an answer to the offer received from the other peer
-  connection.createAnswer().then((answer) => {
+  connection.setRemoteDescription().then((answer)=>{
+    connection.createAnswer().then((answer) => {
     // When the answer is created, send it to the other peer
     sendMessage({ type: 'answer', answer: answer });
     // Set the answer as the local description of the connection
     connection.setLocalDescription(answer);
   });
+
+  })
+
+  
 });
 document.getElementById('hang-up-button').addEventListener('click', () => {
   // End the video chat by closing the connection
