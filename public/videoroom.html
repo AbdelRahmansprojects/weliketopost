@@ -89,6 +89,13 @@ connection.onaddstream = (event) => {
   remoteVideo.srcObject = event.stream;
 };
 
+pc.onnegotiationneeded = e => {
+  if (pc.signalingState != "stable"){ 
+    return "x";
+  }
+  
+}
+
 // Set up event handlers for the buttons
 document.getElementById('start-button').addEventListener('click', () => {
   // Start the video chat by requesting access to the user's webcam and microphone
