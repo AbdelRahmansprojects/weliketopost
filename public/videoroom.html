@@ -105,7 +105,7 @@ document.getElementById('start-button').addEventListener('click', () => {
     // Display the local stream on the page
     localVideo.srcObject = stream;
     // Add the stream to the connection
-    connection.addStream(stream);
+    connection.addTrack(stream.getAudioTracks()[0],stream);
     // Initiate the connection
     connection.createOffer().then((offer) => {
       // When the offer is created, send it to the other peer
@@ -113,7 +113,7 @@ document.getElementById('start-button').addEventListener('click', () => {
       
       // Set the offer as the local description of the connection
       connection.setLocalDescription(offer);
-    });
+    }).catch();
   });
 });
 document.getElementById('call-button').addEventListener('click', () => {
