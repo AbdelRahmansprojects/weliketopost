@@ -116,6 +116,12 @@ document.getElementById('start-button').addEventListener('click', () => {
     }).catch();
   });
 });
+connection.onaddtrack = (event) => {
+  // When the connection receives a stream, display it on the 
+  alert("sa")
+  remoteVideo.srcObject = event.stream;
+};
+
 document.getElementById('call-button').addEventListener('click', () => {
   // Answer the call by creating an answer to the offer received from the other peer
   connection.setRemoteDescription().then((answer)=>{
