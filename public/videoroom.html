@@ -105,7 +105,9 @@ document.getElementById('start-button').addEventListener('click', () => {
     // Display the local stream on the page
     localVideo.srcObject = stream;
     // Add the stream to the connection
-    connection.addTrack(stream.getAudioTracks()[0],stream);
+    stream.getTracks().forEach(track => {
+        connection.addTrack(track, stream);
+    }); 
     // Initiate the connection
     connection.createOffer().then((offer) => {
       // When the offer is created, send it to the other peer
