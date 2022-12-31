@@ -84,7 +84,7 @@ connection.onicecandidate = (event) => {
     sendMessage({ type: 'candidate', candidate: event.candidate });
   }
 };
-connection.onaddstream = (event) => {
+connection.onaddtrack = (event) => {
   // When the connection receives a stream, display it on the 
   alert("sa")
   remoteVideo.srcObject = event.stream;
