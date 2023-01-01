@@ -8,7 +8,6 @@
 
 <p>fsdfjk</p>
 <script>
-var socket = io.connect()
 // const videoGrid = document.getElementById('video-grid')
 // const myVideo = document.createElement('video')
 // const peer = new Peer(undefined, {
@@ -73,6 +72,9 @@ var socket = io.connect()
 // Get references to the video elements on the page
 const localVideo = document.getElementById('local-video');
 const remoteVideo = document.getElementById('remote-video');
+let startbutton =document.getElementById('start-button');
+let hangup =document.getElementById('hang-up-button');
+let callbutton= document.getElementById('call-button');
 
 // Initialize a new WebRTC connection
 const connection = new RTCPeerConnection();
@@ -100,7 +102,7 @@ connection.onnegotiationneeded = e => {
 // Set up event handlers for the buttons
 document.getElementById('start-button').addEventListener('click', () => {
   // Start the video chat by requesting access to the user's webcam and microphone
-                                                                    // if user accepts stream
+                                        // if user accepts stream
   navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
     // Display the local stream on the page
     localVideo.srcObject = stream;
