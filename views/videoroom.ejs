@@ -11,6 +11,7 @@
   let localvid= document.getElementById("local-video")
   let remotevid = document.getElementById("remote-video")
   let video = document.createElement('video')
+  video.muted = true;
   
   const socket = io('/')
   const peer = new Peer()
