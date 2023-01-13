@@ -1,0 +1,92 @@
+<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+<script src = "/socket.io/socket.io.js"></script>
+<div id="local-video" ></div>
+<div id="remote-video" ></div>
+
+<p>sdasasa</p>
+<script>
+                  //got this from saying room id = req.params.room 
+  const roomid = "<%= roomId %>"
+  
+  let localvid= document.getElementById("local-video")
+  let remotevid = document.getElementById("remote-video")
+  let video = document.createElement('video')
+  
+  const socket = io('/')
+  const peer = new Peer()
+  const peers = {}
+  
+  peer.on('open',(id)=>{
+    socket.emit('join-room', roomid,id)
+  })
+
+  navigator.mediaDevices.getUserMedia({video:true, audio: true}).then(stream=>{
+
+    video.srcObject=stream
+    video.style.height="50%"
+    video.addEventListener('loadedmetadata',()=>{
+      video.play()
+    })
+    localvid.append(video)
+
+    // so this is for answering so easily just if i get a call then answer
+    peer.on('call', (call)=>{
+      call.answer(stream)
+      const avid = document.createElement('video')
+      avid.style.height="50%"
+      call.on('stream', userVideo=>{
+          avid.srcObject = userVideo
+          avid.addEventListener('loadedmetadata',()=>{
+            avid.play()
+          })
+          localvid.append(avid)
+      })
+    })
+
+    socket.on('user-connected', (id)=>{
+      let call = peer.call(id, stream)
+      const anvid = document.createElement('video')
+      anvid.style.height="50%"
+      call.on('stream', function(remotestream){
+        avid.addEventListener('loadedmetadata',()=>{
+            avid.play()
+          })
+        remotevid.append(avid)
+      })
+
+      call.on('close',()=>{
+        anvid.remove()
+      })
+
+      peers[userId] = call
+    })
+
+    
+  })
+
+  //peer.on()
+  socket.on('user-disconnected', userid=>{
+    if(peers[userid]){
+      peers[userid].close()
+    }
+  })
+
+  
+
+
+  
+  
+</script>
+
+<style>
+    #local-video{
+      display: grid;
+      height: 50%;
+    }
+    #remote-video{
+      display: grid;
+      height: 50%;
+    }
+
+</style>
+

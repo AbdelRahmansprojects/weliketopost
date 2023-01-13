@@ -3,15 +3,17 @@ const socket = require('socket.io')
 const path = require('path')
 const app = express();
 let testing = false;
-//const server = app.listen((process.env.PORT || 3000, ()=> console.log("listening port 3000")))
-var server = require('http').createServer(app);
+//var server = require('http').createServer(app);
+const server = app.listen(process.env.PORT || 3000, ()=> console.log("listening port 3000"))
 const io = socket(server)
 const fs = require('fs')
 const {userjoin,getcurrentuser, userleave,users} = require('./public/user');
 const e = require('express');
-const { globalEval, data } = require('jquery');
+const {v4: uuidV4} = require('uuid')
 let testusers = []
-server.listen(process.env.PORT || 3000);
+
+
+//server.listen(process.env.PORT || 3000);
 
 const mongo = require('mongodb').MongoClient;
 
@@ -20,19 +22,31 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
     if(err){
         throw err
     }
+
+    app.set('view engine', 'ejs')
+
+    app.get('/secretadminroom', (req, res) => {
+        //res.sendFile(path.resolve(process.cwd(), 'public/videoroom.html'))
+        res.redirect(`/secretadminroom/${uuidV4()}`)
+    })
+
+    app.get('/secretadminroom/:room', (req,res)=>{
+        //used render instead of send file because used ejs(videoroom) and ejs is used for dynamic files like for video
+        res.render('videoroom',{roomId: req.params.room})
+    })
     
     console.log('MongoDB connected.....')
 
-
+    // point of this server is to emit to ALL of the sockets io means everyone
     io.on("connect", function(socket){
-        
         const db = client.db('test')
         let post_collection = db.collection('posts') 
         
         //post_collection.remove()
             post_collection.find().limit(300).sort({_id:1}).toArray(function(err,res){  
                 //console.log(res)  
-                socket.emit('chat', res);
+                // this for when the user first joins and we display everything in the database
+                io.emit('chat', res);
                 
             })  
 
@@ -42,7 +56,8 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
             socket.on('typing',(data)=>{
                 socket.broadcast.emit('typing',data)
             })
-
+            
+            // this for when the user adds something
             socket.on('chat', function(data){
 
                 const user = getcurrentuser(socket.id)  
@@ -58,10 +73,6 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
                 })
             })
 
-            
-            socket.on("peerjoined",(data)=>{
-                socket.broadcast.emit('user-connected',data) 
-            })
 
             socket.on('usercounter',(data)=>{
                 
@@ -100,7 +111,16 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
                 //io.emit('userjoinedmessage', user)
             })
 
+            socket.on("join-room", (roomid,id)=>{
+                socket.join(roomid)
+                socket.to(roomid).broadcast.emit('user-connected', id)
+                socket.on('disconnect', () => {
+                    socket.to(roomid).broadcast.emit('user-disconnected', id)
+                })
+            })
+
             disconnectss = true
+
         })
 })
 
@@ -118,16 +138,16 @@ function formatmessage(name,msg){
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-if (process.env.NODE_ENV === 'production') {
+//if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve(process.cwd(), 'public')))
     app.get('/', (req, res) => {
       res.sendFile(path.resolve(process.cwd(), 'public/test.html'))
     })
-  }
+//}
 
-  app.get('/secretadminroom', (req, res) => {
-    res.sendFile(path.resolve(process.cwd(), 'public/videoroom.html'))
-  })
+
+
+
 
   //WHAT I WANT TO DO: 
   // --video chat:
