@@ -49,10 +49,11 @@
       const anvid = document.createElement('video')
       anvid.style.height="50%"
       call.on('stream', function(remotestream){
-        avid.addEventListener('loadedmetadata',()=>{
-            avid.play()
+        anvid.srcObject= remotestream
+        anvid.addEventListener('loadedmetadata',()=>{
+            anvid.play()
           })
-        remotevid.append(avid)
+        remotevid.append(anvid)
       })
 
       call.on('close',()=>{
