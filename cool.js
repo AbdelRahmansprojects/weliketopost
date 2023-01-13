@@ -25,14 +25,14 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
 
     app.set('view engine', 'ejs')
 
-    app.get('/secretadminroom', (req, res) => {
-        //res.sendFile(path.resolve(process.cwd(), 'public/videoroom.html'))
-        res.redirect(`/secretadminroom/${uuidV4()}`)
-    })
+    // app.get('/secretadminroom', (req, res) => {
+    //     //res.sendFile(path.resolve(process.cwd(), 'public/videoroom.html'))
+    //     res.redirect(`/secretadminroom/${uuidV4()}`)
+    // })
 
-    app.get('/secretadminroom/:room', (req,res)=>{
+    app.get('/secretadminroom', (req,res)=>{
         //used render instead of send file because used ejs(videoroom) and ejs is used for dynamic files like for video
-        res.render('videoroom',{roomId: req.params.room})
+        res.render('videoroom')
     })
     
     console.log('MongoDB connected.....')
@@ -112,11 +112,17 @@ mongo.connect('mongodb+srv://abdu:abdu4532@cluster0.zdkrf.mongodb.net/test?retry
             })
 
             socket.on("join-room", (roomid,id)=>{
-                socket.join(roomid)
-                socket.to(roomid).broadcast.emit('user-connected', id)
+                // socket.join(roomid)
+                // socket.to(roomid).broadcast.emit('user-connected', id)
+                // socket.on('disconnect', () => {
+                //     socket.to(roomid).broadcast.emit('user-disconnected', id)
+                // })
+                socket.broadcast.emit('user-connected', id)
                 socket.on('disconnect', () => {
-                    socket.to(roomid).broadcast.emit('user-disconnected', id)
+                    socket.broadcast.emit('user-disconnected', id)
                 })
+
+
             })
 
             disconnectss = true
